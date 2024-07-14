@@ -1,0 +1,22 @@
+[
+  {
+    "product_id": "001",
+    "name": "เสื้อยืด",
+    "description": "เสื้อยืดผ้าฝ้ายสีขาว",
+    "category": "เสื้อผ้า",
+    "price": 250,
+    "reviews": [
+      {
+        "user": "A",
+        "rating": 5,
+        "comment": "สวยมาก"
+      },
+      {
+        "user": "B",
+        "rating": 4,
+        "comment": "ผ้าดี"
+      }
+    ]
+  },
+  ...
+]
