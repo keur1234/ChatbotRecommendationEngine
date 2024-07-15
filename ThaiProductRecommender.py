@@ -4,7 +4,6 @@ from pythainlp.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 import pandas as pd
-thai_stop_words = thai_stopwords()
 
 class ThaiProductRecommender:
   
@@ -49,7 +48,7 @@ class ThaiProductRecommender:
     sim_scores = linear_kernel(user_input_vector, self.tfidf_matrix).flatten()
     sim_scores = list(enumerate(sim_scores))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:5]  # Get top 4 recommendations
+    sim_scores = sim_scores[1:4]  # Get top 3 recommendations
     product_indices = [i[0] for i in sim_scores]
 
     recommended_products = self.df[['product_id', 'name', 'category', 'price', 'brand', 'warranty_period', 'stock_quantity']].iloc[product_indices]
@@ -64,4 +63,4 @@ class ThaiProductRecommender:
       min_price, max_price = price_range
       recommended_products = recommended_products[(recommended_products['price'] >= min_price) & (recommended_products['price'] <= max_price)]
 
-    return recommended_products if not recommended_products.empty else "ไม่มีสินค้าที่ตรงกับรายการ"
+    return recommended_products if not recommended_products.empty else "ไม่พบ"

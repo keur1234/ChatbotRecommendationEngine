@@ -6,12 +6,12 @@ from dotenv import load_dotenv
 import json
 import requests
 import re
-import ThaiProductRecommender
 import pandas as pd
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
 import chatbot
 
 # Assign environment
+chatbot_instance = chatbot.RecommendationChatbot(user_id=None)
 
 app = Flask(__name__)
 
@@ -19,11 +19,9 @@ app = Flask(__name__)
 load_dotenv()
 line_bot_api = LineBotApi(os.getenv('LINE_CHANNEL_ACCESS_TOKEN'))
 handler = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET'))
-api_key = os.environ.get('GOOGLE_API_KEY')
-
-# Initialize ProductRecommender System
 
 
+# Get message and reply with line format
 @app.route("/", methods=['POST'])
 def webhook():
     if request.method == 'POST':
@@ -39,7 +37,7 @@ def webhook():
             if message_type == 'text':
                 message = event['message']['text']
 
-                chatbot_instance = chatbot.RecommendationChatbot(user_id)
+                chatbot_instance.user_id = user_id
                 Reply_message = chatbot_instance.generate_response(message)
                 
                 PushMessage(user_id, Reply_message)
@@ -119,6 +117,7 @@ def PushMessage(user_id, TextMessage):
         except requests.exceptions.RequestException as fallback_e:
             app.logger.error(f"Failed to push fallback message: {fallback_e}")
 
+# Line dont resive the image then this use to find image url
 def extract_image_url(input_string):
     url_pattern = re.compile(r'https://(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)')
     matches = url_pattern.findall(input_string)
