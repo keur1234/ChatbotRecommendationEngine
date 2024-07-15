@@ -1,20 +1,19 @@
 # Thai Product Recommender System
 
-## Overview
+This project consists of three main components:
 
-Welcome to the Thai Product Recommender System! This project is designed to recommend IT-related products and generate text responses using AI. It consists of two main components:
+1. **`ThaiProductRecommender.py`**: A recommendation system for Thai products.
+2. **`chatbot.py`**: AI text generation for chatbot interactions.
+3. **`main.py`**: A Flask API that integrates with LINE for handling chatbot responses.
 
-1. **`ThaiProductRecommender.py`**: A recommendation system that suggests products based on user preferences.
-2. **`chatbot.py`**: An AI-driven chatbot that generates text responses for user interactions.
+## Getting Started
 
-## Prerequisites
+Follow these steps to set up and run the project:
 
-Make sure you have Python 3.8 or higher installed on your machine. You can download it from [python.org](https://www.python.org/downloads/).
+### 1. Clone the Repository
 
-## Setup
+Clone this repository to your local machine:
 
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/yourusername/ThaiProductRecommender.git
-   cd ThaiProductRecommender
+```bash
+git clone https://github.com/your-username/your-repository.git
+cd your-repository
