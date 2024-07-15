@@ -13,7 +13,7 @@ Follow these steps to set up and run the project:
 ### 1. Clone the Repository
 
 Clone this repository to your local machine:
-
+Create .env file and fill with your API_KEY
 ```bash
 git clone https://github.com/your-username/your-repository.git
 cd your-repository
